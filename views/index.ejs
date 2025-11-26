@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>note taking app</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+  <div class="main w-full min-h-screen bg-zinc-800">
+    <div class="text-white py-10 px-3 form">
+      <form action="/create" method="post">
+        <input name="title"  class="w-full rounded block px-6 py-2 bg-zinc-700
+         resize-none"
+          placeholder="type your thought" />
+        <textarea name="details" placeholder="write your task details" name="details"
+          class="rounded px-6 w-full block mt-2 bg-zinc-700" id=""></textarea>
+        <input type="submit" class="rounded mt-2 bg-blue-600 px-9 py-2" value="create" />
+      </form>
+    </div>
+    <div class="ms-3 flex gap-2 flex-wrap tasks">
+      <%if(files.length>0){%>
+
+        <%files.forEach(function(val){%>
+          <div class="px-3 py-6 rounded bg-zinc-700 w-72 ">
+            <h1 class="text-white text-4xl tracking-tighter"><%=val%></h1>
+            <a class="text-blue-300" href="/file/<%= val %>">read more..</a>
+            <a class="px-3 bg-red-400 rounded   text-white"
+               href="/delete/<%= val %>"
+               onclick="return confirm('Delete this file?')">
+               Delete
+            </a>
+          </div>
+          <% })%>
+            <% } else{ %>
+              <h3 class="text-white">there are no tasks</h3>
+              <% }%>
+
+
+    </div>
+  </div>
+</body>
+
+</html>
